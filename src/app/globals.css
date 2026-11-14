@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #0b0b0c;
+  --color-surface: #151517;
+  --color-surface-2: #1d1d20;
+  --color-line: #2a2a2e;
+  --color-fg: #f4f4f5;
+  --color-muted: #a1a1aa;
+  --color-accent: #c6f432;
+  --color-accent-dim: #9cc21f;
+
+  --font-sans: var(--font-roboto-flex), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    scroll-padding-top: 8rem;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: #000;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  /* Condensed display type using Roboto Flex's width axis */
+  .display {
+    font-weight: 800;
+    font-variation-settings: 'wdth' 30, 'opsz' 144;
+    letter-spacing: -0.01em;
+    line-height: 0.92;
+    text-transform: uppercase;
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .btn-accent {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0 1.5rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+    color: #000;
+    font-weight: 700;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+  .btn-accent:hover {
+    background: #d6ff52;
+  }
+  .btn-accent:active {
+    transform: translateY(1px);
+  }
+  /* Body diagram: the SVG is used as a mask so it can take any colour. */
+  .body-icon {
+    background-color: currentColor;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
